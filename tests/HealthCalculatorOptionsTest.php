@@ -19,4 +19,20 @@ class HealthCalculatorOptionsTest extends TestCase
         $this->expectExceptionMessage("Gender must be male or female");
         new HealthCalculatorOptions(["gender" => "alligator"]);
     }
+
+    public function test_it_throws_if_option_is_requested_without_default()
+    {
+
+        $options = new HealthCalculatorOptions(["gender" => "male"]);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Missing value: bar");
+        $options->getOption("bar");
+    }
+
+    public function test_it_returns_an_option()
+    {
+        $options = new HealthCalculatorOptions(["gender" => "male", "bar" => "foo"]);
+        $this->assertSame("foo", $options->getOption("bar"));
+        $options->getOption("bar");
+    }
 }
