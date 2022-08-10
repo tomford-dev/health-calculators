@@ -25,10 +25,10 @@ class HealthCalculatorOptions
 
     public function female(): bool
     {
-        return $this->gender === "female";
+        return $this->getOption("gender") === "female";
     }
     public function male(): bool
     {
-        return $this->gender === "male";
+        return $this->getOption("gender") === "male";
     }
 }
