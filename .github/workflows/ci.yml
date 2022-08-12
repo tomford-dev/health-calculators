@@ -3,6 +3,49 @@ name: CI Testing
 on: push
 
 jobs:
+  coding-guidelines:
+    name: Coding Guidelines
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: :apcu, :imagick
+          coverage: none
+          tools: none
+
+      - name: Run friendsofphp/php-cs-fixer
+        run: ./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose
+
+  type-checker:
+    name: Type Checker
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: :apcu, :imagick
+          coverage: none
+          tools: none
+
+      - name: Update dependencies with composer
+        run: ./tools/composer update --no-interaction --no-ansi --no-progress
+
+      - name: Run vimeo/psalm
+        run: ./tools/psalm --config=.psalm/config.xml --no-progress --shepherd --show-info=false --stats
+
   build-test:
     runs-on: ubuntu-latest
 
