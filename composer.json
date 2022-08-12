@@ -7,8 +7,13 @@
       "Tomfordweb\\HealthCalculators\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tomfordweb\\HealthCalculators\\Tests\\": "tests/"
+    }
+  },
   "require-dev": {
-    "phpunit/phpunit": "^9.5.10"
+    "phpunit/phpunit": "9.*"
   },
   "require": {
     "webmozart/assert": "^1.11"

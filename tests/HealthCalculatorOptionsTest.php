@@ -1,5 +1,7 @@
 <?php
 
+namespace Tomfordweb\HealthCalculators\Tests;
+
 use PHPUnit\Framework\TestCase;
 use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 
