@@ -1,3 +1,4 @@
+# Thanks: https://github.com/sebastianbergmann/php-code-coverage/blob/main/.github/workflows/ci.yml
 name: CI Testing
 
 on: push
