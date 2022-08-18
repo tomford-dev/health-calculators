@@ -7,6 +7,14 @@ use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 
 class HealthCalculatorOptionsTest extends TestCase
 {
+    public function test_it_can_return_multiple_options()
+    {
+        $values = ["gender" => "male", "name" => "John Doe"];
+        $options = new HealthCalculatorOptions($values);
+        $testValues = $options->getOptions(["gender", "name"]);
+
+        $this->assertSame($values, $testValues);
+    }
 
     public function test_it_expects_gender()
     {
