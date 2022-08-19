@@ -22,6 +22,13 @@ class HealthCalculatorOptions
         }
         return $this->options[$key];
     }
+    public function getOptions(array $options): array
+    {
+        $values =  array_map(function ($key) {
+            return $this->getOption($key);
+        }, $options);
+        return array_combine($options, $values);
+    }
 
     public function female(): bool
     {

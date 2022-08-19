@@ -22,7 +22,7 @@ class BmrCalculatorTest extends TestCase
             )
         );
 
-        $this->assertSame(1836, $calculator->calculate());
+        $this->assertSame(1836, (int) $calculator->calculate());
     }
     public function test_it_works_for_males()
     {
@@ -38,6 +38,6 @@ class BmrCalculatorTest extends TestCase
             )
         );
 
-        $this->assertSame(1924, $calculator->calculate());
+        $this->assertSame(1924, (int) $calculator->calculate());
     }
 }

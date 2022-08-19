@@ -23,7 +23,7 @@ class BmrCalculator implements HealthCalculator
         $this->isMale = $options->male();
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         $constant = $this->isMale ? 66.47 : 665.1;
         $weightMultiplier = $this->isMale ? 13.75 : 9.563;
