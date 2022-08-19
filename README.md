@@ -6,4 +6,4 @@ composer require tomfordweb/health-calculators
 
 # Thanks
 
-- [https://fitties.com/](Jackson Pollock Formulas)
+- [Jackson Pollock Formulas](https://fitties.com/)
