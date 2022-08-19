@@ -15,11 +15,11 @@ class SkinfoldSumTest extends TestCase
 
     public function test_it_sums()
     {
-        $this->assertSame(SkinfoldSum::create([1, 2, 3])->calculate(), 6);
+        $this->assertSame((int) SkinfoldSum::create([1, 2, 3])->calculate(), 6);
     }
 
     public function test_it_handles_strings()
     {
-        $this->assertSame(SkinfoldSum::create([1, 2, "3"])->calculate(), 6);
+        $this->assertSame((int) SkinfoldSum::create([1, 2, "3"])->calculate(), 6);
     }
 }

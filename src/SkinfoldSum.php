@@ -26,7 +26,7 @@ class SkinfoldSum implements HealthCalculator
         return new static($values);
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         return array_sum($this->values);
     }

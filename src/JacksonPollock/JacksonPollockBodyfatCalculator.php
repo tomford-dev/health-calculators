@@ -20,7 +20,7 @@ class JacksonPollockBodyfatCalculator implements HealthCalculator, JacksonPolloc
         return new self($healthCalculatorOptions);
     }
 
-    public function calculate(): int
+    public function calculate(): float
     {
         if ($this->values->female()) {
             $calculator = JacksonPollockFemaleBodyDensityCalculator::class;
