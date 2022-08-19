@@ -26,7 +26,10 @@ interface JacksonPollockCalculator
 
     /**
      * Each implementation should calculate the four point
-     * body density or body fat values
+     * body density or body fat values.
+     *
+     * Note that this calculator actually returns the bodyfat %, rather than density.
+     * TODO: find an example the returns the density.
      */
     public function calculateFourPoint(HealthCalculatorOptions $values): float;
 
