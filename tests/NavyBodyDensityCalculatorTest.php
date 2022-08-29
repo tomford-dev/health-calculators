@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use Tomfordweb\HealthCalculators\ConvertBodyDensityToBodyfatPercentage;
 use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 use Tomfordweb\HealthCalculators\NavyBodyDensityCalculator;
 
@@ -50,8 +51,7 @@ class NavyBodyDensityCalculatorTest extends TestCase
             'neck' => 40
         ]));
 
-        // TODO: create shared density -> bodyfat since the formula is same between this and JP
-        $value =  (495 / $calculator->calculate()) - 450;
+        $value = ConvertBodyDensityToBodyfatPercentage::create($calculator->calculate())->calculate();
         $this->assertSame(round($value, 3), 19.746);
     }
 }

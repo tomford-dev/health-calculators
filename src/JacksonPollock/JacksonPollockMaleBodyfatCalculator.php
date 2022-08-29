@@ -5,7 +5,7 @@ namespace Tomfordweb\HealthCalculators\JacksonPollock;
 use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 use Tomfordweb\HealthCalculators\SkinfoldSum;
 
-class JacksonPollockMaleBodyDensityCalculator implements JacksonPollockCalculator
+class JacksonPollockMaleBodyfatCalculator implements JacksonPollockCalculator
 {
     public function calculateThreePoint(HealthCalculatorOptions $values): float
     {
@@ -20,13 +20,14 @@ class JacksonPollockMaleBodyDensityCalculator implements JacksonPollockCalculato
 
     public function calculateFourPoint(HealthCalculatorOptions $values): float
     {
-        throw new \DomainException(
-            sprintf(
-                "Invalid method, use %s::%s instead",
-                JacksonPollockFemaleBodyfatCalculator::class,
-                __METHOD__
-            )
-        );
+        $skinfoldSum = SkinfoldSum::create($values->getOptions([
+            self::MEASUREMENT_ABDOMINAL,
+            self::MEASUREMENT_TRICEP,
+            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_THIGH
+        ]))->calculate();
+
+        return (0.29288 * $skinfoldSum) - (0.0005 * ($skinfoldSum ** 2)) + (0.15845 * (int) $values->getOption("age")) - 18.5495;
     }
 
     public function calculateSevenPoint(HealthCalculatorOptions $values): float

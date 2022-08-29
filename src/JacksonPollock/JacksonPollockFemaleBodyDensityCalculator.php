@@ -20,14 +20,13 @@ class JacksonPollockFemaleBodyDensityCalculator implements JacksonPollockCalcula
 
     public function calculateFourPoint(HealthCalculatorOptions $values): float
     {
-        $skinfoldSum = SkinfoldSum::create($values->getOptions([
-            self::MEASUREMENT_ABDOMINAL,
-            self::MEASUREMENT_TRICEP,
-            self::MEASUREMENT_SUPRAILAC,
-            self::MEASUREMENT_THIGH
-        ]))->calculate();
-
-        return (0.29669 * $skinfoldSum) - (0.00043 * ($skinfoldSum ** 2)) + (0.02963 * (int) $values->getOption("age")) + 1.4072;
+        throw new \DomainException(
+            sprintf(
+                "Invalid method, use %s::%s instead",
+                JacksonPollockFemaleBodyfatCalculator::class,
+                __METHOD__
+            )
+        );
     }
 
     public function calculateSevenPoint(HealthCalculatorOptions $values): float
