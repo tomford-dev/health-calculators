@@ -41,20 +41,4 @@ class JacksonPollockFemaleBodyDensityCalculatorTest extends TestCase
 
         $this->assertSame($calculator->calculateSevenPoint($options), 1.0500060499999997);
     }
-
-    public function test_it_can_calculateFourPoint()
-    {
-        $options = new HealthCalculatorOptions([
-            'gender' => 'female',
-            'age' => 30,
-            JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 15,
-            JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 15,
-            JacksonPollockCalculator::MEASUREMENT_THIGH => 15
-        ]);
-
-        $calculator = new JacksonPollockFemaleBodyDensityCalculator();
-
-        $this->assertSame($calculator->calculateFourPoint($options), 18.5495);
-    }
 }

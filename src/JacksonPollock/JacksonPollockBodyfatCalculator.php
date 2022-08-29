@@ -2,6 +2,7 @@
 
 namespace Tomfordweb\HealthCalculators\JacksonPollock;
 
+use Tomfordweb\HealthCalculators\ConvertBodyDensityToBodyfatPercentage;
 use Tomfordweb\HealthCalculators\HealthCalculator;
 use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 use Webmozart\Assert\Assert;
@@ -22,50 +23,44 @@ class JacksonPollockBodyfatCalculator implements HealthCalculator, JacksonPolloc
 
     public function calculate(): float
     {
-        if ($this->values->female()) {
-            $calculator = JacksonPollockFemaleBodyDensityCalculator::class;
-        } else {
-            $calculator = JacksonPollockMaleBodyDensityCalculator::class;
-        }
 
-        $calculator = new $calculator;
         switch ((int) $this->values->getOption("type")) {
             case 3:
-                $method = "calculateThreePoint";
-                break;
-            case 4:
-                // NOTE: every formula I have found for the 4 point does 
-                // not return density, it returns the BF % instead.
-                return $calculator->calculateFourPoint($this->values);
-                break;
             case 7:
-                $method = "calculateSevenPoint";
-                break;
+                $density = JacksonPollockBodyDensityCalculator::create($this->values)->calculate();
+                return ConvertBodyDensityToBodyfatPercentage::create($density)->calculate();
+            case 4:
+                if ($this->values->female()) {
+                    $calculator = JacksonPollockFemaleBodyfatCalculator::class;
+                } else {
+                    $calculator = JacksonPollockMaleBodyfatCalculator::class;
+                }
+                $calculator = new $calculator;
+                return $calculator->calculateFourPoint($this->values);
             default:
                 throw new \InvalidArgumentException("unknown type");
         }
-
-
-        $density = $calculator->{$method}($this->values);
-
-        // Calculate bodyfat based off of deesity
-        return (495 / $density) - 450;
     }
 
     public function calculateThreePoint(HealthCalculatorOptions $values): float
     {
-        $instance = new self($values);
-        return $instance->calculate();
+        return ConvertBodyDensityToBodyfatPercentage::create(
+            JacksonPollockBodyDensityCalculator::create(
+                $values
+            )->calculate()
+        )->calculate();
     }
 
     public function calculateFourPoint(HealthCalculatorOptions $values): float
     {
-        $instance = new self($values);
-        return $instance->calculate();
+        return $this->calculate();
     }
     public function calculateSevenPoint(HealthCalculatorOptions $values): float
     {
-        $instance = new self($values);
-        return $instance->calculate();
+        return ConvertBodyDensityToBodyfatPercentage::create(
+            JacksonPollockBodyDensityCalculator::create(
+                $values
+            )->calculate()
+        )->calculate();
     }
 }
