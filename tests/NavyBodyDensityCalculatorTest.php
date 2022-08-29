@@ -18,7 +18,7 @@ class NavyBodyDensityCalculatorTest extends TestCase
             'hips' => 15,
             'neck' => 15
         ]));
-        $this->assertSame($calculator->calculate(),  1.101619544251303);
+        $this->assertSame(round($calculator->calculate(), 3),  1.102);
     }
     /**
      * @test
@@ -32,9 +32,8 @@ class NavyBodyDensityCalculatorTest extends TestCase
             'height' => 150
         ]));
         $this->assertSame(
-            $calculator->calculate(),
-
-            1.0230276940348453
+            round($calculator->calculate(), 3),
+            1.023
         );
     }
 
@@ -51,7 +50,8 @@ class NavyBodyDensityCalculatorTest extends TestCase
             'neck' => 40
         ]));
 
+        // TODO: create shared density -> bodyfat since the formula is same between this and JP
         $value =  (495 / $calculator->calculate()) - 450;
-        $this->assertSame($value, 19.746147333401836);
+        $this->assertSame(round($value, 3), 19.746);
     }
 }
