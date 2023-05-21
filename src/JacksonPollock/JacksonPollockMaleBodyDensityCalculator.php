@@ -37,7 +37,7 @@ class JacksonPollockMaleBodyDensityCalculator implements JacksonPollockCalculato
             self::MEASUREMENT_TRICEP,
             self::MEASUREMENT_SUBSCAPULAR,
             self::MEASUREMENT_ABDOMINAL,
-            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_SUPRAILIAC,
             self::MEASUREMENT_THIGH,
         ]))->calculate();
 

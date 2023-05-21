@@ -3,7 +3,6 @@
 use PHPUnit\Framework\TestCase;
 use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockBodyDensityCalculator;
-use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockMaleBodyDensityCalculator;
 use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockCalculator;
 
 class JacksonPollockBodyDensityCalculatorTest extends TestCase
@@ -19,7 +18,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
@@ -41,7 +40,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
@@ -68,7 +67,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
@@ -88,7 +87,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
@@ -107,7 +106,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
@@ -129,7 +128,7 @@ class JacksonPollockBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 

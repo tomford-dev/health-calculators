@@ -23,7 +23,7 @@ class JacksonPollockMaleBodyfatCalculator implements JacksonPollockCalculator
         $skinfoldSum = SkinfoldSum::create($values->getOptions([
             self::MEASUREMENT_ABDOMINAL,
             self::MEASUREMENT_TRICEP,
-            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_SUPRAILIAC,
             self::MEASUREMENT_THIGH
         ]))->calculate();
 
@@ -38,7 +38,7 @@ class JacksonPollockMaleBodyfatCalculator implements JacksonPollockCalculator
             self::MEASUREMENT_TRICEP,
             self::MEASUREMENT_SUBSCAPULAR,
             self::MEASUREMENT_ABDOMINAL,
-            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_SUPRAILIAC,
             self::MEASUREMENT_THIGH,
         ]))->calculate();
 

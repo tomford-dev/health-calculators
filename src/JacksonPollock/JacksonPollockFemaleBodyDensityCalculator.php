@@ -11,7 +11,7 @@ class JacksonPollockFemaleBodyDensityCalculator implements JacksonPollockCalcula
     {
         $skinfoldSum = SkinfoldSum::create($values->getOptions([
             self::MEASUREMENT_TRICEP,
-            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_SUPRAILIAC,
             self::MEASUREMENT_THIGH,
         ]))->calculate();
 
@@ -37,7 +37,7 @@ class JacksonPollockFemaleBodyDensityCalculator implements JacksonPollockCalcula
             self::MEASUREMENT_TRICEP,
             self::MEASUREMENT_SUBSCAPULAR,
             self::MEASUREMENT_ABDOMINAL,
-            self::MEASUREMENT_SUPRAILAC,
+            self::MEASUREMENT_SUPRAILIAC,
             self::MEASUREMENT_THIGH
         ]))->calculate();
 

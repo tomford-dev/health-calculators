@@ -13,7 +13,7 @@ class JacksonPollockFemaleBodyDensityCalculatorTest extends TestCase
             'gender' => 'female',
             'age' => 30,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 15
         ]);
 
@@ -29,7 +29,7 @@ class JacksonPollockFemaleBodyDensityCalculatorTest extends TestCase
             'age' => 30,
             JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 15,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
             JacksonPollockCalculator::MEASUREMENT_PECTORAL => 15,
             JacksonPollockCalculator::MEASUREMENT_AXILA => 15,
             JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 15,

@@ -15,7 +15,7 @@ class JacksonPollockFemaleBodyfatCalculatorTest extends TestCase
             'age' => 30,
             JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 15,
             JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
-            JacksonPollockCalculator::MEASUREMENT_SUPRAILAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
             JacksonPollockCalculator::MEASUREMENT_THIGH => 15
         ]);
 

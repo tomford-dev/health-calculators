@@ -14,7 +14,7 @@ interface JacksonPollockCalculator
     const MEASUREMENT_ABDOMINAL = "abdominal";
     const MEASUREMENT_THIGH = "thigh";
     const MEASUREMENT_TRICEP = "tricep";
-    const MEASUREMENT_SUPRAILAC = "suprailac";
+    const MEASUREMENT_SUPRAILIAC = "suprailiac";
     const MEASUREMENT_AXILA = "axila";
     const MEASUREMENT_SUBSCAPULAR = "subscapular";
 
