@@ -17,9 +17,9 @@ class JacksonPollockFemaleBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_THIGH => 15
         ]);
 
-        $calculator = new JacksonPollockFemaleBodyDensityCalculator();
+        $calculator = new JacksonPollockFemaleBodyDensityCalculator($options);
 
-        $this->assertSame($calculator->calculateThreePoint($options), 1.0552931);
+        $this->assertSame($calculator->calculateThreePoint(), 1.0552931);
     }
 
     public function test_it_can_calculateSevenPoint()
@@ -37,8 +37,24 @@ class JacksonPollockFemaleBodyDensityCalculatorTest extends TestCase
 
         ]);
 
-        $calculator = new JacksonPollockFemaleBodyDensityCalculator();
+        $calculator = new JacksonPollockFemaleBodyDensityCalculator($options);
 
-        $this->assertSame($calculator->calculateSevenPoint($options), 1.0500060499999997);
+        $this->assertSame($calculator->calculateSevenPoint(), 1.0500060499999997);
+    }
+
+    public function test_it_cannot_attempt_four_point()
+    {
+        $options = new HealthCalculatorOptions([
+            'gender' => 'female',
+            'age' => 30,
+            JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_THIGH => 15
+        ]);
+
+        $calculator = new JacksonPollockFemaleBodyDensityCalculator($options);
+        $this->expectException(\DomainException::class);
+        $calculator->calculateFourPoint();
+
     }
 }

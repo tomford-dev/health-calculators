@@ -1,4 +1,5 @@
 vendor
 _coverage
+clover.xml
 .phpunit.result.cache
 .null-ls*

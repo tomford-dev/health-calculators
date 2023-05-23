@@ -7,6 +7,40 @@ use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockFemaleBodyfatCalcu
 
 class JacksonPollockFemaleBodyfatCalculatorTest extends TestCase
 {
+    public function test_it_rejects_threePoint()
+    {
+
+        $options = new HealthCalculatorOptions([
+            'gender' => 'female',
+            'age' => 30,
+            JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 15,
+            JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_THIGH => 15
+        ]);
+
+        $calculator = new JacksonPollockFemaleBodyfatCalculator($options);
+        $this->expectException(\DomainException::class);
+        $calculator->calculateThreePoint();
+    }
+
+    public function test_it_rejects_sevenPoint()
+    {
+
+        $options = new HealthCalculatorOptions([
+            'gender' => 'female',
+            'age' => 30,
+            JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 15,
+            JacksonPollockCalculator::MEASUREMENT_TRICEP => 15,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 15,
+            JacksonPollockCalculator::MEASUREMENT_THIGH => 15
+        ]);
+
+        $calculator = new JacksonPollockFemaleBodyfatCalculator($options);
+        $this->expectException(\DomainException::class);
+        $calculator->calculateSevenPoint();
+
+    }
 
     public function test_it_can_calculateFourPoint()
     {
@@ -19,8 +53,8 @@ class JacksonPollockFemaleBodyfatCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_THIGH => 15
         ]);
 
-        $calculator = new JacksonPollockFemaleBodyfatCalculator();
+        $calculator = new JacksonPollockFemaleBodyfatCalculator($options);
 
-        $this->assertSame($calculator->calculateFourPoint($options), 18.5495);
+        $this->assertSame($calculator->calculateFourPoint(), 18.5495);
     }
 }

@@ -34,8 +34,8 @@ class ExertionPercentagesTest extends TestCase
         );
 
         foreach ($values as $value) {
-            $this->assertObjectHasAttribute('percentage', $value);
-            $this->assertObjectHasAttribute('value', $value);
+            $this->assertObjectHasProperty('percentage', $value);
+            $this->assertObjectHasProperty('value', $value);
         }
     }
 
@@ -65,7 +65,6 @@ class ExertionPercentagesTest extends TestCase
         $values = ExertionPercentages::calculate(
             $calculator
         );
-        error_log(json_encode($values));
         $value = end($values);
         $this->assertSame($value->percentage, 100);
         $this->assertSame($value->value, $expected);

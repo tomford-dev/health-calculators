@@ -1,3 +1,5 @@
+![code coverage](https://raw.githubusercontent.com/tomford-dev/health-calculators/image-data/coverage.svg)
+
 To use these calculators, run the following command in your project.
 
 ```
@@ -56,6 +58,22 @@ Will output
   }
 ]
 ```
+
+# Testing
+
+Run the unit tests:
+
+```
+./vendor/bin/phpunit
+```
+
+Or to include code coverage:
+
+```
+XDEBUG_MODE=coverage ./vendor/bin/phpunit
+```
+
+You can view the coverage report at `_coverage/index.html`
 
 # Thanks
 

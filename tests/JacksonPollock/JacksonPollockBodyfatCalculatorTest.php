@@ -7,6 +7,27 @@ use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockCalculator;
 
 class JacksonPollockBodyfatCalculatorTest extends TestCase
 {
+    public function test_it_rejects_unknown_type()
+    {
+
+        $options = new HealthCalculatorOptions([
+            'gender' => 'female',
+            'type' => 8,
+            'age' => 30,
+            JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 25,
+            JacksonPollockCalculator::MEASUREMENT_PECTORAL => 50,
+            JacksonPollockCalculator::MEASUREMENT_AXILA => 50,
+            JacksonPollockCalculator::MEASUREMENT_TRICEP => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUBSCAPULAR => 50,
+            JacksonPollockCalculator::MEASUREMENT_SUPRAILIAC => 50,
+            JacksonPollockCalculator::MEASUREMENT_THIGH => 40
+        ]);
+
+        // for code coverage..
+        $otherWay = JacksonPollockBodyfatCalculator::create($options);
+        $this->expectException(\InvalidArgumentException::class);
+        $otherWay->calculate();
+    }
     public function test_it_can_calculate_female_7_point()
     {
         $options = new HealthCalculatorOptions([
@@ -27,6 +48,7 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
         // for code coverage..
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
         $this->assertSame(round($otherWay->calculateSevenPoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculate(), 3), $value);
     }
 
     public function test_it_can_calculate_male_7_point()
@@ -55,6 +77,7 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
         // for code coverage..
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
         $this->assertSame(round($otherWay->calculateSevenPoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculate(), 3), $value);
     }
     public function test_it_can_calculate_female_4_point()
     {
@@ -73,7 +96,8 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
 
         $value = 39.543;
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
-        $this->assertSame(round($otherWay->calculateFourPoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculateFourPoint(), 3), $value);
+        $this->assertSame(round($otherWay->calculate(), 3), $value);
     }
 
     public function test_it_can_calculate_male_4_point()
@@ -95,7 +119,8 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
         $this->assertSame(round(JacksonPollockBodyfatCalculator::create($options)->calculate(), 3), $value);
         // for code coverage..
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
-        $this->assertSame(round($otherWay->calculateFourPoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculateFourPoint(), 3), $value);
+        $this->assertSame(round($otherWay->calculate(), 3), $value);
     }
     public function test_it_can_calculate_female_3_point()
     {
@@ -116,7 +141,7 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
         $this->assertSame(round(JacksonPollockBodyfatCalculator::create($options)->calculate(), 3), $value);
         // for code coverage..
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
-        $this->assertSame(round($otherWay->calculateThreePoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculateThreePoint(), 3), $value);
     }
 
     public function test_it_can_calculate_male_3_point()
@@ -139,6 +164,6 @@ class JacksonPollockBodyfatCalculatorTest extends TestCase
 
         // for code coverage..
         $otherWay = JacksonPollockBodyfatCalculator::create($options);
-        $this->assertSame(round($otherWay->calculateThreePoint($options), 3), $value);
+        $this->assertSame(round($otherWay->calculateThreePoint(), 3), $value);
     }
 }

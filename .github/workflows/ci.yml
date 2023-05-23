@@ -14,6 +14,23 @@ jobs:
           php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
-          args: --coverage-text
+          coverage_clover: "clover.xml"
         env:
           XDEBUG_MODE: coverage
+
+      - name: Make code coverage badge
+        if: github.ref == 'refs/heads/main'
+        uses: timkrase/phpunit-coverage-badge@v1.2.1
+        with:
+          coverage_badge_path: output/coverage.svg
+          push_badge: false
+
+      - name: Git push to image-data branch
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./output
+          publish_branch: image-data
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
