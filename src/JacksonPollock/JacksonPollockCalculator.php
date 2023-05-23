@@ -21,21 +21,26 @@ interface JacksonPollockCalculator
     /**
      * Each implementation should calculate the three point
      * body density or body fat values
+     *
+     * @return float
      */
-    public function calculateThreePoint(HealthCalculatorOptions $values): float;
+    public function calculateThreePoint(): float;
 
     /**
      * Each implementation should calculate the four point
      * body density or body fat values.
      *
      * Note that this calculator actually returns the bodyfat %, rather than density.
-     * TODO: find an example the returns the density.
+     *
+     * @return float
      */
-    public function calculateFourPoint(HealthCalculatorOptions $values): float;
+    public function calculateFourPoint(): float;
 
     /**
      * Each implementation should calculate the seven point
      * body density or body fat values
+     *
+     * @return float
      */
-    public function calculateSevenPoint(HealthCalculatorOptions $values): float;
+    public function calculateSevenPoint(): float;
 }

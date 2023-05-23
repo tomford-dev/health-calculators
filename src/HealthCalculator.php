@@ -7,7 +7,7 @@ interface HealthCalculator
     /**
      * Calculate the value
      *
-     * @return The value
+     * @return float
      */
     public function calculate(): float;
 }

@@ -7,9 +7,9 @@ use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 
 class JacksonPollockBodyDensityCalculator implements HealthCalculator, JacksonPollockCalculator
 {
-    private $values;
+    private HealthCalculatorOptions $values;
 
-    private function __construct(HealthCalculatorOptions $healthCalculatorOptions)
+    public function __construct(HealthCalculatorOptions $healthCalculatorOptions)
     {
         $this->values = $healthCalculatorOptions;
     }
@@ -19,6 +19,11 @@ class JacksonPollockBodyDensityCalculator implements HealthCalculator, JacksonPo
         return new self($healthCalculatorOptions);
     }
 
+    /**
+     * Calculate the body density based on input
+     *
+     * @return float
+     */
     public function calculate(): float
     {
         if ($this->values->female()) {
@@ -27,7 +32,7 @@ class JacksonPollockBodyDensityCalculator implements HealthCalculator, JacksonPo
             $calculator = JacksonPollockMaleBodyDensityCalculator::class;
         }
 
-        $calculator = new $calculator;
+        $calculator = new $calculator($this->values);
         switch ((int) $this->values->getOption("type")) {
             case 3:
                 $method = "calculateThreePoint";
@@ -53,13 +58,22 @@ class JacksonPollockBodyDensityCalculator implements HealthCalculator, JacksonPo
         return $density;
     }
 
-    public function calculateThreePoint(HealthCalculatorOptions $values): float
+    /**
+     * Calculate the body density off 3 points
+     *
+     * @return float
+     */
+    public function calculateThreePoint(): float
     {
-        $instance = new self($values);
-        return $instance->calculate();
+        return $this->calculate();
     }
 
-    public function calculateFourPoint(HealthCalculatorOptions $values): float
+    /**
+     * Calculate the body density off 4 points
+     *
+     * @return float
+     */
+    public function calculateFourPoint(): float
     {
         throw new \DomainException(
             sprintf(
@@ -70,9 +84,13 @@ class JacksonPollockBodyDensityCalculator implements HealthCalculator, JacksonPo
         );
     }
 
-    public function calculateSevenPoint(HealthCalculatorOptions $values): float
+    /**
+     * Calculate the body density off 7 points
+     *
+     * @return float
+     */
+    public function calculateSevenPoint(): float
     {
-        $instance = new self($values);
-        return $instance->calculate();
+        return $this->calculate();
     }
 }

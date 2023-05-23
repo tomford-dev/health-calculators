@@ -57,6 +57,22 @@ Will output
 ]
 ```
 
+# Testing
+
+Run the unit tests:
+
+```
+./vendor/bin/phpunit
+```
+
+Or to include code coverage:
+
+```
+XDEBUG_MODE=coverage ./vendor/bin/phpunit
+```
+
+You can view the coverage report at `_coverage/index.html`
+
 # Thanks
 
 - [Jackson Pollock Formulas](https://fitties.com/)

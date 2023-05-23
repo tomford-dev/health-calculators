@@ -8,6 +8,22 @@ use Tomfordweb\HealthCalculators\JacksonPollock\JacksonPollockMaleBodyDensityCal
 class JacksonPollockMaleBodyDensityCalculatorTest extends TestCase
 {
 
+    public function test_it_rejects_four_point()
+    {
+        $options = new HealthCalculatorOptions([
+            'gender' => 'male',
+            'age' => 30,
+            JacksonPollockCalculator::MEASUREMENT_ABDOMINAL => 25,
+            JacksonPollockCalculator::MEASUREMENT_PECTORAL => 50,
+            JacksonPollockCalculator::MEASUREMENT_THIGH => 40
+        ]);
+
+        $calculator = new JacksonPollockMaleBodyDensityCalculator($options);
+        $this->expectException(\DomainException::class);
+        $calculator->calculateFourPoint();
+
+    }
+
     /**
      * @test
      */
@@ -21,8 +37,8 @@ class JacksonPollockMaleBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
-        $calculator = new JacksonPollockMaleBodyDensityCalculator();
-        $this->assertSame($calculator->calculateThreePoint($options), 1.0277475);
+        $calculator = new JacksonPollockMaleBodyDensityCalculator($options);
+        $this->assertSame($calculator->calculateThreePoint(), 1.0277475);
     }
 
     /**
@@ -42,7 +58,7 @@ class JacksonPollockMaleBodyDensityCalculatorTest extends TestCase
             JacksonPollockCalculator::MEASUREMENT_THIGH => 40
         ]);
 
-        $calculator = new JacksonPollockMaleBodyDensityCalculator();
-        $this->assertSame($calculator->calculateSevenPoint($options), 1.0209041);
+        $calculator = new JacksonPollockMaleBodyDensityCalculator($options);
+        $this->assertSame($calculator->calculateSevenPoint(), 1.0209041);
     }
 }

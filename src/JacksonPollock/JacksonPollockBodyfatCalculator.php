@@ -11,16 +11,33 @@ class JacksonPollockBodyfatCalculator implements HealthCalculator, JacksonPolloc
 {
     private $values;
 
-    private function __construct(HealthCalculatorOptions $healthCalculatorOptions)
+    /**
+     * The constructor
+     *
+     * @param HealthCalculatorOptions $values The measurements
+     */
+    public function __construct(HealthCalculatorOptions $values)
     {
-        $this->values = $healthCalculatorOptions;
+        $this->values = $values;
     }
 
+    /**
+     * A static factory method
+     *
+     * @param HealthCalculatorOptions $healthCalculatorOptions The measurements
+     *
+     * @return JacksonPollockBodyfatCalculator
+     */
     public static function create(HealthCalculatorOptions $healthCalculatorOptions)
     {
         return new self($healthCalculatorOptions);
     }
 
+    /**
+     * Calculate the bodyfat based on the input
+     *
+     * @return float
+     */
     public function calculate(): float
     {
 
@@ -35,31 +52,48 @@ class JacksonPollockBodyfatCalculator implements HealthCalculator, JacksonPolloc
                 } else {
                     $calculator = JacksonPollockMaleBodyfatCalculator::class;
                 }
-                $calculator = new $calculator;
-                return $calculator->calculateFourPoint($this->values);
+                $calculator = new $calculator($this->values);
+                return $calculator->calculateFourPoint();
             default:
                 throw new \InvalidArgumentException("unknown type");
         }
     }
 
-    public function calculateThreePoint(HealthCalculatorOptions $values): float
+
+    /**
+     * Calculate the bodyfat based off 3 points
+     *
+     * @return float
+     */
+    public function calculateThreePoint(): float
     {
         return ConvertBodyDensityToBodyfatPercentage::create(
             JacksonPollockBodyDensityCalculator::create(
-                $values
+                $this->values
             )->calculate()
         )->calculate();
     }
 
-    public function calculateFourPoint(HealthCalculatorOptions $values): float
+    /**
+     * Calculate the bodyfat based off 4 points
+     *
+     * @return float
+     */
+    public function calculateFourPoint(): float
     {
         return $this->calculate();
     }
-    public function calculateSevenPoint(HealthCalculatorOptions $values): float
+
+    /**
+     * Calculate the bodyfat based off 7 points
+     *
+     * @return float
+     */
+    public function calculateSevenPoint(): float
     {
         return ConvertBodyDensityToBodyfatPercentage::create(
             JacksonPollockBodyDensityCalculator::create(
-                $values
+                $this->values,
             )->calculate()
         )->calculate();
     }
