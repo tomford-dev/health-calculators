@@ -1,4 +1,4 @@
-![code coverage](https://github.com/tomfordweb/health-calculators/actions/workflows/ci.yml/coverage.svg)
+![code coverage](https://raw.githubusercontent.com/tomford-dev/health-calculators/image-data/coverage.svg)
 
 To use these calculators, run the following command in your project.
 
