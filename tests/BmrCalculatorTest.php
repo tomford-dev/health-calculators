@@ -8,6 +8,22 @@ use Tomfordweb\HealthCalculators\HealthCalculatorOptions;
 
 class BmrCalculatorTest extends TestCase
 {
+    public function test_it_works_numeric()
+    {
+        $calculator = new BmrCalculator(
+            new HealthCalculatorOptions(
+                [
+                    'gender' => "female",
+                    'weight' => '120',
+                    'height' => '74',
+                    'age' => '24'
+                ]
+
+            )
+        );
+
+        $this->assertSame(1836, (int) $calculator->calculate());
+    }
     public function test_it_works_for_females()
     {
         $calculator = new BmrCalculator(

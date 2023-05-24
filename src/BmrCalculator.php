@@ -13,13 +13,13 @@ class BmrCalculator implements HealthCalculator
 
     public function __construct(HealthCalculatorOptions $options)
     {
-        Assert::integer($options->getOption('height'), "must be an integer: height");
-        Assert::integer($options->getOption('weight'), "must be an integer: weight");
-        Assert::integer($options->getOption('age'), "must be an integer: age");
+        Assert::numeric($options->getOption('height'), "must be numeric: height");
+        Assert::numeric($options->getOption('weight'), "must be numeric: weight");
+        Assert::numeric($options->getOption('age'), "must be numeric: age");
 
-        $this->height = $options->getOption('height');
-        $this->weight = $options->getOption('weight');
-        $this->age = $options->getOption('age');
+        $this->height = (int) $options->getOption('height');
+        $this->weight = (int) $options->getOption('weight');
+        $this->age = (int) $options->getOption('age');
         $this->isMale = $options->male();
     }
 
