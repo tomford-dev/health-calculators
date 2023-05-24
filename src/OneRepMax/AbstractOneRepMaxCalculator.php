@@ -26,4 +26,9 @@ abstract class AbstractOneRepMaxCalculator implements HealthCalculator
         $this->weight = $weight;
         $this->reps = $reps;
     }
+
+    public function percentages()
+    {
+        return ExertionPercentages::calculate($this);
+    }
 }
